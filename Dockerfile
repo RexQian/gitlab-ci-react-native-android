@@ -28,6 +28,7 @@ RUN apt-get -qq update && \
       lib32ncurses5 \
       lib32z1 \
       unzip \
+      locales \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN rm -f /etc/ssl/certs/java/cacerts; \
@@ -60,6 +61,10 @@ ENV BUILD_PACKAGES git yarn nodejs build-essential imagemagick librsvg2-bin ruby
 RUN echo "Installing Additional Libraries" \
 	 && rm -rf /var/lib/gems \
 	 && apt-get update && apt-get install $BUILD_PACKAGES -qqy --no-install-recommends
+
+
+RUN locale-gen en_US.UTF-8
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 RUN echo "Installing Fastlane 2.61.0" \
 	&& gem install fastlane badge -N \
