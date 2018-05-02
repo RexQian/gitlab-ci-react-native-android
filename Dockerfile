@@ -5,7 +5,7 @@
 # https://github.com/cuisines/gitlab-ci-react-native-android
 #
 
-FROM ubuntu:17.10
+FROM ubuntu:18
 MAINTAINER Daniel Jost <d.jost@pillentaxi.de>
 
 RUN echo "Android SDK 27.0.2"
@@ -69,15 +69,5 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 RUN echo "Installing Fastlane 2.61.0" \
 	&& gem install fastlane badge -N \
 	&& gem cleanup
-
-ENV GRADLE_HOME /opt/gradle
-ENV GRADLE_VERSION 4.4.1
-
-RUN echo "Downloading Gradle" \
-	&& wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip"
-
-RUN echo "Installing Gradle" \
-	&& unzip gradle.zip \
-	&& rm gradle.zip \
-	&& mv "gradle-${GRADLE_VERSION}" "${GRADLE_HOME}/" \
-	&& ln --symbolic "${GRADLE_HOME}/bin/gradle" /usr/bin/gradle
+	
+RUN apt-get purge -y --auto-remove
