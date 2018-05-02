@@ -5,7 +5,7 @@
 # https://github.com/cuisines/gitlab-ci-react-native-android
 #
 
-FROM ubuntu:18
+FROM ubuntu
 MAINTAINER Daniel Jost <d.jost@pillentaxi.de>
 
 RUN echo "Android SDK 27.0.2"
