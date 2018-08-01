@@ -29,6 +29,7 @@ RUN apt-get -qq update && \
       lib32z1 \
       unzip \
       locales \
+      gnupg \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN rm -f /etc/ssl/certs/java/cacerts; \
